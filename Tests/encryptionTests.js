@@ -21,5 +21,14 @@ describe('encryptionTests', function() {
         assert.equal(decryptedResults1, originalText1, 'The decrypted text1 does not match');
         var decryptedResults2 = await encrypt.Decrypt(encryptedResults2, keypair.PrivateKey);
         assert.equal(decryptedResults2, originalText2, 'The decrypted text2 does not match');
+    }),
+    it('should fail decryption', async function() {
+        var originalText = 'Super Secret Words';
+        var keypair1 = await genKeyPair.GenerateKeyPair();
+        var keypair2 = await genKeyPair.GenerateKeyPair();
+        var encryptedResults  = await encrypt.Encrypt(originalText, keypair1.PublicKey);
+        //Now decrypt with a different private key
+        assert.rejects(function() { encrypt.Decrypt(encryptedResults, keypair2.PrivateKey)});
+        // assert.throws( function() { encrypt.Decrypt(encryptedResults, keypair2.PrivateKey)}, Error, "Error Thrown");
     })
 });
