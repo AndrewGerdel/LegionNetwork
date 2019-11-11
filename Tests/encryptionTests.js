@@ -39,5 +39,12 @@ describe('encryptionTests', function() {
         var encryptedResults  = await encrypt.Encrypt(originalText, keypair.PublicKey);
         var decryptedResults = await encrypt.Decrypt(encryptedResults, keypair.PrivateKey);
         assert.equal(decryptedResults, originalText, 'The decrypted text does not match');
+    }),
+    it('should encrypt a PDF file', async function() {
+        var originalText = fs.readFileSync("Tests/Files/LoremIpsum.txt");
+        var keypair = await genKeyPair.GenerateKeyPair()
+        var encryptedResults  = await encrypt.Encrypt(originalText, keypair.PublicKey);
+        var decryptedResults = await encrypt.Decrypt(encryptedResults, keypair.PrivateKey);
+        assert.equal(decryptedResults, originalText, 'The decrypted text does not match');
     });
 });
