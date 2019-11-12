@@ -37,8 +37,16 @@ var AddNode = (async (uri, uid) => {
     }
 });
 
+var DeleteNode = (async(uid) => {
+    var db = await mongoose.GetDb();
+    db.collection('nodes').deleteOne({ uid: uid });
+    return true;
+});
+
+
 module.exports =
 {
     GetAllNodes,
-    AddNode
+    AddNode, 
+    DeleteNode
 }

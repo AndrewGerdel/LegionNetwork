@@ -10,7 +10,7 @@ if(process.env.DATABASE){
 }
 mongoose.connect(connectionString.host + (process.env.DATABASE || connectionString.database), { useNewUrlParser: true,  useUnifiedTopology: true , w: 1 }, (error, client) => {
   if (error) {
-    logger.WriteLog('Unable to connect to Mongo', true);
+    console.log('Unable to connect to Mongo', true);
     return;
   }
 });
@@ -29,7 +29,7 @@ var GetDb = (() => {
       var start = new Date();
       MongoClient.connect(connectionString.host, { useUnifiedTopology: true }, (error, client) => {
         if (error) {
-          logger.WriteLog('Unable to connect to Mongo', true);
+          console.log('Unable to connect to Mongo', true);
           return;
         }
         DB = client.db((process.env.DATABASE || connectionString.database));
