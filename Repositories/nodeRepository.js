@@ -5,7 +5,6 @@ mongoose.GetDb().then((db) => {
     db.collection("nodes").createIndex({ "uid": 1 }, { unique: true });
 });
 
-
 var GetAllNodes = (async () => {
     var db = await mongoose.GetDb();
     var nodes = await db.collection('nodes').find().toArray();
