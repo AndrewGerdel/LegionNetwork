@@ -3,9 +3,6 @@ var bitcoin = require('../Modules/bitcoin');
 
 describe('generateKeyPairTests', function() {
     it('should generate a bitcoin wallet', async function() {
-
-        var someNumber = 1.23456789123456789;
-    var someNumber2 = 2 + someNumber;
         var result = await bitcoin.GenerateKeypair();
         assert.equal(result.PublicKey.length > 0, true, 'The public key is incorrect');
         assert.equal(result.PrivateKey.length > 0, true, 'The public key is incorrect');
