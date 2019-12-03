@@ -1,14 +1,13 @@
 {
-    "database":
-    {
-        "host":"mongodb://localhost:27017/",
-        "database":"Legion"
+    "database": {
+        "host": "mongodb://localhost:27017/",
+        "database": "Legion"
     },
-    "node":
-    {
-        "uid":"abc123",
+    "node": {
+        "uid": "abc123",
         "protocol": "http",
-        "ip":"127.0.0.1",
-        "port":"65455"
+        "ip": "127.0.0.1",
+        "port": "65455",
+        "webSocketPort": "65456"
     }
 }
