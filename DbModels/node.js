@@ -11,7 +11,19 @@ var Node = mongoose.model('Node', {
   },
   uid : {
     type: String,
-    require: true
+    required: true
+  },
+  protocol : {
+    type: String,
+    required: true
+  },
+  webServicePort : {
+    type: Number,
+    required: true
+  },
+  webSocketPort : {
+    type: Number,
+    required: true
   }
 });
 
