@@ -15,22 +15,24 @@ var GetAllMessages = (async () => {
 var GetMessage = (async (hash) => {
     var db = await mongoose.GetDb();
     var messages = await db.collection('messages').find({ hash: hash }).toArray();
-    if(messages.length > 0){
+    if (messages.length > 0) {
         return messages[0];
-    }else{
+    } else {
         return null;
     }
 });
 
-var AddMessage = (async (content, dateAdded, type) => {
-    var hash = await sha256.CreateHash(`{$content}{$dateAdded}{$type}`);
+var AddMessage = (async (content, dateAdded, type, from, to) => {
+    var hash = await sha256.CreateHash(`${content}${dateAdded}${type}${from}${to}`);
     var foundMessage = await GetMessage(hash.toString('base64'));
     if (!foundMessage) {
         var newMessage = new Message({
-           content: content,
-           dateAdded: dateAdded,
-           type: type,
-           hash: hash.toString('base64')
+            message: content,
+            dateAdded: dateAdded,
+            type: type,
+            hash: hash.toString('base64'),
+            from: from,
+            to: to
         });
         newMessage.save();
         return newMessage;
@@ -39,7 +41,7 @@ var AddMessage = (async (content, dateAdded, type) => {
     }
 });
 
-module.exports ={
+module.exports = {
     AddMessage,
     GetMessage,
     GetAllMessages

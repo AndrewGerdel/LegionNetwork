@@ -1,5 +1,3 @@
-
-
 var nodeRepository = require('../Repositories/nodeRepository');
 var ProcessMessage = (async (message) => {
     if (message.type === 'ADD') {
@@ -9,7 +7,7 @@ var ProcessMessage = (async (message) => {
         var newNode = await nodeRepository.AddNode(message.content.uri, message.content.uid);
         return { success: true, message: newNode };
     } else {
-        return { success: false, message: 'Missing type' };
+        return { success: false, message: 'Missing message.type' };
     }
 });
 
